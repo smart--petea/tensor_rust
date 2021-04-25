@@ -1,4 +1,4 @@
-package Draw
+package draw
 
 import (
     "image/color"
@@ -13,6 +13,10 @@ func ToCoord(gameCoord int32) float64 {
 }
 
 func DrawBlock(colour color.Color, x, y int32) *imdraw.IMDraw {
+    return DrawRectangle(colour, x, y, 1, 1)
+}
+
+func DrawRectangle(colour color.Color, x, y, width, height int32) *imdraw.IMDraw {
     gui_x := ToCoord(x)
     gui_y := ToCoord(y)
 
@@ -20,7 +24,7 @@ func DrawBlock(colour color.Color, x, y int32) *imdraw.IMDraw {
 
     imd.Color = colour
     imd.Push(pixel.V(gui_x, gui_y))
-    imd.Push(pixel.V(gui_x + BLOCK_SIZE, gui_y + BLOCK_SIZE))
+    imd.Push(pixel.V(gui_x + BLOCK_SIZE * float64(width), gui_y + BLOCK_SIZE * float64(height)))
     imd.Rectangle(0)
 
     return imd

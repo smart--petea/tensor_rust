@@ -5,7 +5,10 @@ import (
     "github.com/faiface/pixel/pixelgl"
     "golang.org/x/image/colornames"
 
-    "snake/Draw"
+    "snake/draw"
+    "snake/snake"
+
+    "fmt"
 )
 
 func run() {
@@ -21,11 +24,13 @@ func run() {
 
     for !win.Closed() {
         win.Clear(colornames.Aliceblue)
-        Draw.DrawBlock(colornames.Black, 10, 15).Draw(win)
+        //Draw.DrawBlock(colornames.Black, 10, 15).Draw(win)
+        draw.DrawRectangle(colornames.Black, 10, 15, 2, 3).Draw(win)
         win.Update()
     }
 }
 
 func main() {
+    fmt.Printf("%+v", snake.SNAKE_COLOR)
     pixelgl.Run(run)
 }
